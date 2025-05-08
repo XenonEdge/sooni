@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,81 +22,55 @@
         }
         .title {
             position: absolute;
-            top: 30%;
+            top: 30vh;   /* 원래 30% */
             width: 100%;
             text-align: center;
         }
         .line1 {
-            font-size: 90px;
-            letter-spacing: -4px;
-            word-spacing: -20px;
+            font-size: 4.7vw;  /* 90px 기준 */
+            letter-spacing: -0.2vw;
+            word-spacing: -1vw;
             color: white;
-            text-shadow: 2px 2px red, -2px -2px blue;
+            text-shadow: 0.2vw 0.2vw red, -0.2vw -0.2vw blue;
         }
         .line2 {
-            font-size: 80px;
-            letter-spacing: -4px;
-            word-spacing: -20px;
+            font-size: 4.2vw;  /* 80px 기준 */
+            letter-spacing: -0.2vw;
+            word-spacing: -1vw;
             color: white;
-            text-shadow: 2px 2px red, -2px -2px blue;
+            text-shadow: 0.2vw 0.2vw red, -0.2vw -0.2vw blue;
         }
         .start-button {
             position: absolute;
-            top: 65%;
+            top: 65vh;   /* 원래 65% */
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #FF3C28;
             color: white;
             border: none;
-            padding: 20px 40px;
-            font-size: 40px;
-            border-radius: 15px;
+            padding: 2vh 4vh;
+            font-size: 2vw; /* 40px 기준 */
+            border-radius: 2vh;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
             animation: glow 1.5s infinite alternate;
         }
         @keyframes glow {
-            from { box-shadow: 0 0 10px #FF3C28; }
-            to { box-shadow: 0 0 30px #FF3C28; }
+            from { box-shadow: 0 0 1vh #FF3C28; }
+            to { box-shadow: 0 0 3vh #FF3C28; }
         }
         .control-button {
             position: absolute;
-            bottom: 14%;
-            width: 50px;
-            height: 50px;
+            bottom: 14vh;  /* 원래 14% */
+            width: 2.6vw;  /* 50px 기준 */
+            height: auto;
             cursor: pointer;
         }
-        .play-btn { right: 700px; }
-        .pause-btn { right: 660px; }
-        .stop-btn { right: 620px; }
-        .sound-btn { right: 580px; }
-    
-@media screen and (max-width: 768px) {
-    .title-text, .line1, .line2 {
-        font-size: 6vw !important;
-    }
-    .content-text, .subtitle, .description {
-        font-size: 4.5vw !important;
-    }
-    .arrow-img {
-        width: 12vw !important;
-        bottom: 15% !important;
-    }
-    .control-button {
-        width: 10vw !important;
-        height: auto !important;
-        bottom: 5% !important;
-    }
-    .play-btn { right: 30vw !important; }
-    .pause-btn { right: 22vw !important; }
-    .stop-btn { right: 14vw !important; }
-    .sound-btn { right: 5vw !important; }
-    .label {
-        font-size: 4vw !important;
-    }
-}
-
-</style>
+        .play-btn { right: 36.5vw; }   /* 700px 기준 환산 */
+        .pause-btn { right: 34.4vw; }  /* 660px 기준 */
+        .stop-btn { right: 32.3vw; }   /* 620px 기준 */
+        .sound-btn { right: 30.2vw; }  /* 580px 기준 */
+    </style>
 </head>
 <body onclick="playSound()">
     <div class="switch-frame">
@@ -113,7 +86,7 @@
         <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
     </div>
 
-    <audio id="startSound" >
+    <audio id="startSound">
         <source src="audio/sooni_intro.mp3" type="audio/mpeg">
     </audio>
 
@@ -122,14 +95,11 @@
         let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
         let played = false;
 
-        // 최초 사운드 설정
-        
-window.onload = function() {
-    if (sessionStorage.getItem("soundState") === null) {
-        soundState = true;
-        sessionStorage.setItem("soundState", true);
-    }
-
+        window.onload = function() {
+            if (sessionStorage.getItem("soundState") === null) {
+                soundState = true;
+                sessionStorage.setItem("soundState", true);
+            }
             if (!soundState) {
                 document.getElementById("soundToggle").src = "images/sound_off.png";
             }
@@ -148,17 +118,12 @@ window.onload = function() {
         function playAudio() { if (soundState) { audio.play(); played = true; } }
         function pauseAudio() { audio.pause(); }
         function stopAudio() { audio.pause(); audio.currentTime = 0; }
-function toggleSound() {
-    soundState = !soundState;
-    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
-    sessionStorage.setItem("soundState", soundState);
-    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
-}
-
+        function toggleSound() {
+            soundState = !soundState;
+            document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+            sessionStorage.setItem("soundState", soundState);
+            audio.volume = soundState ? 1 : 0;
+        }
     </script>
 </body>
 </html>
-
-<script>function goPrev() { window.location.href = "index.html"; }</script>
-
-<script>function goNext() { window.location.href = "page2.html"; }</script>
