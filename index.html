@@ -14,42 +14,46 @@
             overflow: hidden;
         }
         .switch-frame {
-            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
-            background-size: contain;
             width: 100vw;
             height: 100vh;
+            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
+            background-size: contain;
             position: relative;
         }
-        .title {
+        /* 액정 화면 (글자+버튼 들어가는 영역) */
+        .screen-inner {
             position: absolute;
-            top: 30vh;   /* 원래 30% */
-            width: 100%;
+            top: 14.5%;
+            left: 11.5%;
+            width: 77%;
+            height: 71%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
         .line1 {
-            font-size: 4.7vw;  /* 90px 기준 */
-            letter-spacing: -0.2vw;
+            font-size: 5vw; /* 액정안 기준 vw */
+            letter-spacing: -0.3vw;
             word-spacing: -1vw;
+            text-shadow: 0.3vw 0.3vw red, -0.3vw -0.3vw blue;
             color: white;
-            text-shadow: 0.2vw 0.2vw red, -0.2vw -0.2vw blue;
         }
         .line2 {
-            font-size: 4.2vw;  /* 80px 기준 */
-            letter-spacing: -0.2vw;
+            font-size: 4.5vw;
+            letter-spacing: -0.3vw;
             word-spacing: -1vw;
+            text-shadow: 0.3vw 0.3vw red, -0.3vw -0.3vw blue;
             color: white;
-            text-shadow: 0.2vw 0.2vw red, -0.2vw -0.2vw blue;
         }
         .start-button {
-            position: absolute;
-            top: 65vh;   /* 원래 65% */
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin-top: 4vh;
+            padding: 2vh 4vh;
+            font-size: 3vw;
             background-color: #FF3C28;
             color: white;
             border: none;
-            padding: 2vh 4vh;
-            font-size: 2vw; /* 40px 기준 */
             border-radius: 2vh;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
@@ -61,24 +65,24 @@
         }
         .control-button {
             position: absolute;
-            bottom: 14vh;  /* 원래 14% */
-            width: 2.6vw;  /* 50px 기준 */
+            bottom: 5%;
+            width: 5vw;
             height: auto;
             cursor: pointer;
         }
-        .play-btn { right: 36.5vw; }   /* 700px 기준 환산 */
-        .pause-btn { right: 34.4vw; }  /* 660px 기준 */
-        .stop-btn { right: 32.3vw; }   /* 620px 기준 */
-        .sound-btn { right: 30.2vw; }  /* 580px 기준 */
+        .play-btn { right: 25vw; }
+        .pause-btn { right: 20vw; }
+        .stop-btn { right: 15vw; }
+        .sound-btn { right: 10vw; }
     </style>
 </head>
 <body onclick="playSound()">
     <div class="switch-frame">
-        <div class="title">
-            <div class="line1">DO YOU KNOW</div><br>
+        <div class="screen-inner">
+            <div class="line1">DO YOU KNOW</div>
             <div class="line2">SOONI GROUP</div>
+            <button class="start-button" onclick="startQuiz()">START</button>
         </div>
-        <button class="start-button" onclick="startQuiz()">START</button>
 
         <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
         <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
