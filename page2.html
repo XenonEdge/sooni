@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SOONI GROUP 소개</title>
+    <style>
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('fonts/BMJUA_ttf.ttf') format('truetype');
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'BMJUA', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .switch-frame {
+            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+            width: 20%;
+            height: auto;
+            z-index: 0;
+        }
+        .content-box {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            font-size: 22px;
+            line-height: 1.6;
+            color: white;
+            text-shadow: 1px 1px black;
+            z-index: 1;
+        }
+        .arrow-img {
+            position: absolute;
+            bottom: 24%;
+            width: 60px;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .left-button { left: 25%; }
+        .right-button { right: 25.3%; }
+        .control-button {
+            position: absolute;
+            bottom: 14%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .play-btn { right: 700px; }
+        .pause-btn { right: 660px; }
+        .stop-btn { right: 620px; }
+        .sound-btn { right: 580px; }
+    </style>
+</head>
+<body onclick="playSound()">
+    <div class="switch-frame">
+        <img src="images/silver.gif" class="logo-background">
+        <div class="content-box">
+             수니그룹은 2022년 11월 30일에 만들어졌어요.<br><br>
+            크루가 처음 만들어질 때, 당시 인기 드라마 재벌집 막내아들에 등장한 순양그룹을 모티브로 했어요.<br><br>
+
+            수니그룹은 노래와 댄스를 중심으로 활동하는 회사 컨셉의 보라 크루예요.<br>
+            현재 수니뮤직, 수니엔터, 그리고 수니게임즈가 함께하고 있어요.<br>
+            (자세한 설명은 뒤에서 알려드릴게요!)<br><br>
+
+            운영은 비시즌과 시즌으로 나눠서 진행돼요.<br>
+            비시즌에는 재정비의 시간으로, 갠방, 합방, 휴방 등 멤버들이 자유롭게 활동해요.<br><br>
+
+            시즌이 시작되면 수니콘을 위한 몰입의 시간이 찾아와요!<br>
+            멤버들과 다양한 콘텐츠를 함께하고, 수니콘 준비도 본격적으로 진행되죠.<br>
+            가끔은 단체 MT, 버스킹, 드림콘 같은 다양한 활동도 함께해요.<br><br>
+
+            그리고, 제일 중요한 수니콘!<br>
+            수니콘은 수니그룹의 대표 콘텐츠로,<br>
+            3주마다 새로운 주제로 팬분들께 선보이는 특별한 콘서트랍니다.
+
+        </div>
+
+        <img src="images/prev.png" class="arrow-img left-button" onclick="goPrev(); playSound();">
+        <img src="images/next.png" class="arrow-img right-button" onclick="goNext(); playSound();">
+
+        <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
+        <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
+        <img src="images/stop.png" class="control-button stop-btn" onclick="stopAudio();">
+        <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
+    </div>
+
+    <audio id="page2Audio">
+        <source src="audio/sooni_page2_audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById("page2Audio");
+        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
+        let played = false;
+
+        
+window.onload = function() {
+    if (sessionStorage.getItem("soundState") === null) {
+        soundState = true;
+        sessionStorage.setItem("soundState", true);
+    }
+
+            if (!soundState) {
+                document.getElementById("soundToggle").src = "images/sound_off.png";
+            }
+        };
+
+        function playSound() {
+            if (!played && soundState) {
+                audio.currentTime = 0;
+                audio.play();
+                played = true;
+            }
+        }
+        function goPrev() { window.location.href = "index.html"; "index.html"; }
+        function goNext() { window.location.href = "page3.html"; "page3.html"; }
+        function playAudio() { if (soundState) { audio.play(); played = true; } }
+        function pauseAudio() { audio.pause(); }
+        function stopAudio() { audio.pause(); audio.currentTime = 0; }
+function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
+}
+
+    </script>
+</body>
+</html>

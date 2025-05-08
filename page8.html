@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>벌금제도</title>
+    <style>
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('fonts/BMJUA_ttf.ttf') format('truetype');
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'BMJUA', sans-serif;
+            overflow: hidden;
+        }
+        .switch-frame {
+            background-image: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            top: 0; left: 0; right: 0; bottom: 0;
+        }
+        .arrow-img {
+            position: absolute;
+            bottom: 24%;
+            width: 60px;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .left-button { left: 25%; }
+        .right-button { right: 25.3%; }
+
+        .control-button {
+            position: absolute;
+            bottom: 14%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .play-btn { right: 700px; }
+        .pause-btn { right: 660px; }
+        .stop-btn { right: 620px; }
+        .sound-btn { right: 580px; }
+    </style>
+</head>
+<body onclick="playSound()">
+    <div class="switch-frame">
+        <img src="images/prev.png" class="arrow-img left-button" onclick="goPrev(); playSound();">
+        <img src="images/next.png" class="arrow-img right-button" onclick="goNext(); playSound();">
+        <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
+        <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
+        <img src="images/stop.png" class="control-button stop-btn" onclick="stopAudio();">
+        <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
+    
+<!-- 타이틀 -->
+<div id="title" style="
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 60px;
+    color: red;
+    font-weight: bold;
+    text-align: center;">
+    벌금제도
+</div>
+
+<!-- 서브타이틀 -->
+<div id="subtitle" style="
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+    color: #ffd700;
+    text-align: center;
+    line-height: 1.5;">
+    서로 스트레스 받지 않기 위해 벌금 시스템 만듬.<br/>
+    모아지는 벌금은 수니그룹 운영자금으로 사용되며, 이 비용은 소모품 구입, 버스킹, MT, 객원비용, 음원구입 등 다양하게 사용된다.
+</div>
+
+<!-- 본문 -->
+<div id="main-text" style="
+    position: absolute;
+    top: 38%;
+    left: 30%;
+    font-size: 23px;
+    color: white;
+    line-height: 1.8;
+    text-align: left;">
+    합방 콘텐츠 지각 또는 노쇼 : 분당 1만원(노쇼 100만원 부과)<br/>
+    배지 착용<span style="color:red;">X</span> : 2만원 / 호신용품 소지<span style="color:red;">X</span> : 5만원<br/>
+    회장과 합방 후 귀가 인증<span style="color:red;">X</span> : 10만원<br/>
+    12시간 이내 부재중 전화 콜 백<span style="color:red;">X</span> : 1만원<br/>
+    사옥 뒷정리를 하지 않거나 개인 물건을 방치 : 3만원<br/>
+    수니그룹 직원 번호 저장<span style="color:red;">X</span> : 건당 1만원<br/>
+    마이크, 인이어팩 등 장비 부주의하게 다룰 경우 : 5만원<br/>
+    댄스팀 실내용 신발 착용<span style="color:red;">X</span> : 1만원 / 보컬팀 - 개인 이어폰 지참<span style="color:red;">X</span> : 1만원<br/>
+    3층 방송 스튜디오에 실내용 신발이 아닌 신발을 신고 출입 : 3만원<br/>
+    간부 카톡 확인 후 체크표시<span style="color:red;">X</span> : 1만원 / 간부 지시불이행 : 3만원 / 회장 지시불이행 : 10만원<br/>
+    별도로 생성한 수니그룹 단체 카톡방 역시 사장 카톡 확인 후 체크표시<span style="color:red;">X</span> : 3만원(지시불이행과 동일, 3회 누적 시 징계위원회 회부)
+</div>
+
+</div>
+
+    <audio id="page8Audio"><source src="audio/sooni_page8_audio.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        const audio = document.getElementById("page8Audio");
+        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
+        let played = false;
+
+        window.onload = function() {
+            if (sessionStorage.getItem("soundState") === null) {
+                soundState = true;
+                sessionStorage.setItem("soundState", true);
+            }
+            if (!soundState) {
+                document.getElementById("soundToggle").src = "images/sound_off.png";
+            }
+        };
+
+        function playSound() {
+            if (!played && soundState) {
+                audio.currentTime = 0;
+                audio.play();
+                played = true;
+            }
+        }
+
+        function goPrev() { window.location.href = "page7.html"; }
+        function goNext() { window.location.href = "page9.html"; }
+        function playAudio() { if (soundState) { audio.play(); played = true; } }
+        function pauseAudio() { audio.pause(); }
+        function stopAudio() { audio.pause(); audio.currentTime = 0; }
+   function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
+}
+    </script>
+</body>
+</html>

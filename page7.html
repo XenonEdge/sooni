@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>방송수칙</title>
+    <style>
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('fonts/BMJUA_ttf.ttf') format('truetype');
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'BMJUA', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .switch-frame {
+            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+            width: 20%;
+            height: auto;
+            z-index: 0;
+        }
+        .content-box {
+            position: absolute;
+            top: 25%;
+            left: 73%;
+            transform: translateX(-50%);
+            width: 85%;
+            text-align: left;
+            font-size: 40px;
+            line-height: 1.8;
+            color: white;
+            text-shadow: 1px 1px black;
+            z-index: 2;
+        }
+        .title-style {
+            font-size: 60px;
+            position: absolute;
+            top: 5%;
+            left: 22%;
+            transform: translateX(-50%);
+            color: red;
+            font-weight: bold;
+        }
+        .arrow-img {
+            position: absolute;
+            bottom: 24%;
+            width: 60px;
+            height: auto;
+            cursor: pointer;
+        }
+        .left-button { left: 25%; }
+        .right-button { right: 25.3%; }
+        .control-button {
+            position: absolute;
+            bottom: 14%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .play-btn { right: 700px; }
+        .pause-btn { right: 660px; }
+        .stop-btn { right: 620px; }
+        .sound-btn { right: 580px; }
+    </style>
+</head>
+<body onclick="playSound()">
+    <div class="switch-frame">
+        <img src="images/silver.gif" class="logo-background">
+        <div class="content-box">
+            <span class="title-style">방송 수칙</span><br><br>
+            1. 일반인, 연예인, 청소년, 아동비하 금지<br>
+            2. 장애인 비하금지(앉은뱅이, 정신병자, 언청이, 틱 기타 등등)<br>
+            3. 정치, 종교, 군 관련 언급금지(관련 지식이 없다면 언급자제)<br>
+            4. 성차별, 인종차별 관련 언급금지<br>
+            5. 자리에 없거나 친분이 없는 사람에 대한 비하, 모욕 또는 명예훼손 금지<br>
+            6. 직원들 사이 사적인 연락 금지(매니저 포함)
+        </div>
+
+        <img src="images/prev.png" class="arrow-img left-button" onclick="goPrev(); playSound();">
+        <img src="images/next.png" class="arrow-img right-button" onclick="goNext(); playSound();">
+
+        <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
+        <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
+        <img src="images/stop.png" class="control-button stop-btn" onclick="stopAudio();">
+        <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
+    </div>
+
+    <audio id="page7Audio">
+        <source src="audio/sooni_intro7.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById("page7Audio");
+        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
+        let played = false;
+
+      function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0; // 🔥 볼륨으로 제어
+
+
+}
+  
+window.onload = function() {
+    if (sessionStorage.getItem("soundState") === null) {
+        soundState = true;
+        sessionStorage.setItem("soundState", true);
+    }
+
+            if (!soundState) {
+                document.getElementById("soundToggle").src = "images/sound_off.png";
+            }
+        };
+
+        function playSound() {
+            if (!played && soundState) {
+                audio.currentTime = 0;
+                audio.play();
+                played = true;
+            }
+        }
+function goPrev() { window.location.href = "page6.html"; }
+function goNext() { window.location.href = "page8.html"; }
+
+        function playAudio() { if (soundState) { audio.play(); played = true; } }
+        function pauseAudio() { audio.pause(); }
+        function stopAudio() { audio.pause(); audio.currentTime = 0; }
+       function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
+}
+
+    </script>
+</body>
+</html>

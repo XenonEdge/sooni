@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DO YOU KNOW SOONI GROUP</title>
+    <link href="fonts/PressStart2P-Regular.ttf" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            overflow: hidden;
+        }
+        .switch-frame {
+            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .title {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+        }
+        .line1 {
+            font-size: 90px;
+            letter-spacing: -4px;
+            word-spacing: -20px;
+            color: white;
+            text-shadow: 2px 2px red, -2px -2px blue;
+        }
+        .line2 {
+            font-size: 80px;
+            letter-spacing: -4px;
+            word-spacing: -20px;
+            color: white;
+            text-shadow: 2px 2px red, -2px -2px blue;
+        }
+        .start-button {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FF3C28;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 40px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #FF3C28; }
+            to { box-shadow: 0 0 30px #FF3C28; }
+        }
+        .control-button {
+            position: absolute;
+            bottom: 14%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .play-btn { right: 700px; }
+        .pause-btn { right: 660px; }
+        .stop-btn { right: 620px; }
+        .sound-btn { right: 580px; }
+    </style>
+</head>
+<body onclick="playSound()">
+    <div class="switch-frame">
+        <div class="title">
+            <div class="line1">DO YOU KNOW</div><br>
+            <div class="line2">SOONI GROUP</div>
+        </div>
+        <button class="start-button" onclick="startQuiz()">START</button>
+
+        <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
+        <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
+        <img src="images/stop.png" class="control-button stop-btn" onclick="stopAudio();">
+        <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
+    </div>
+
+    <audio id="startSound" >
+        <source src="audio/sooni_intro.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById("startSound");
+        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
+        let played = false;
+
+        // 최초 사운드 설정
+        
+window.onload = function() {
+    if (sessionStorage.getItem("soundState") === null) {
+        soundState = true;
+        sessionStorage.setItem("soundState", true);
+    }
+
+            if (!soundState) {
+                document.getElementById("soundToggle").src = "images/sound_off.png";
+            }
+        };
+
+        function playSound() {
+            if (!played && soundState) {
+                audio.currentTime = 0;
+                audio.play();
+                played = true;
+            }
+        }
+        function startQuiz() {
+            window.location.href = "page2.html";
+        }
+        function playAudio() { if (soundState) { audio.play(); played = true; } }
+        function pauseAudio() { audio.pause(); }
+        function stopAudio() { audio.pause(); audio.currentTime = 0; }
+function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
+}
+
+    </script>
+</body>
+</html>
+
+<script>function goPrev() { window.location.href = "index.html"; }</script>
+
+<script>function goNext() { window.location.href = "page2.html"; }</script>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>수니그룹 페이지4</title>
+    <style>
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('fonts/BMJUA_ttf.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'BebasNeue';
+            src: url('fonts/english/BebasNeue.otf') format('opentype');
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'BMJUA', sans-serif;
+            overflow: hidden;
+        }
+        .switch-frame {
+            background-image: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+            width: 20%;
+            height: auto;
+            z-index: 0;
+        }
+
+
+        /* 페이지 이동 버튼 */
+        .arrow-img {
+            position: absolute;
+            bottom: 24%;
+            width: 60px;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .left-button { left: 25%; }
+        .right-button { right: 25.3%; }
+
+        /* 재생 컨트롤 */
+        .control-button {
+            position: absolute;
+            bottom: 14%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .play-btn { right: 700px; }
+        .pause-btn { right: 660px; }
+        .stop-btn { right: 620px; }
+        .sound-btn { right: 580px; }
+
+        /* --- 추가한 스타일 --- */
+        /* 제목 위치/크기 조절 */
+        .main-title {
+            position: absolute;
+            top: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 5;
+        }
+
+        /* 조직도 전체 wrapper 조절 */
+        .tree-wrapper {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            font-size: 1em;
+            color: #d4af37;
+        }
+
+        /* 조직도 세부 스타일 */
+        .tree-area {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+            align-items: flex-start;
+        }
+        .tree {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 35px;
+            position: relative;
+        }
+        .branches {
+             margin-top: 25px;
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+        }
+        .org-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .korean {
+            font-size: 40px;
+            text-shadow: 1px 1px 2px #8b5e00;
+            margin-bottom: 4px;
+        }
+        .english {
+            font-family: 'BebasNeue', Arial, sans-serif;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px #8b5e00;
+        }
+        .line-down {
+            width: 2px;
+            height: 80px;
+            background-color: #d4af37;
+            margin: 0 auto;
+            position: relative;
+            top: 80px;
+        }
+        .line-horizontal {
+            width: 300px;
+            height: 2px;
+            background-color: #d4af37;
+            margin: 0 auto;
+            position: relative;
+            top: 8px;
+        }
+        .line-vertical {
+            width: 2px;
+            background-color: #d4af37;
+            position: absolute;
+        }
+        .music-line { height: 40px; }
+        .ent-line { height: 40px; }
+        .v1 { left: 0; }
+        .v2 { left: 50%; transform: translateX(-50%); }
+        .v3 { right: 0; }
+    </style>
+</head>
+<body onclick="playSound()">
+    <div class="switch-frame">
+        <img src="images/silver.gif" class="logo-background">
+        <!-- 상단 제목 -->
+        <div class="main-title">수니그룹 조직도</div>
+
+        <!-- 조직도 wrapper -->
+        <div class="tree-wrapper">
+            <div class="tree-area">
+                <div class="tree">
+                    <div class="org-item" style="transform: translateY(100px);">
+                        <div class="korean">수니뮤직</div>
+                        <div class="english">SOONI MUSIC</div>
+                    </div>
+                    <div class="line-down"></div>
+                    <div class="line-horizontal">
+                        <div class="line-vertical v1 music-line"></div>
+                        <div class="line-vertical v2 music-line"></div>
+                        <div class="line-vertical v3 music-line"></div>
+                    </div>
+                    <div class="branches">
+                        <div class="org-item" style="transform: translateX(7px);">
+                            <div class="korean">엔소울</div>
+                            <div class="english">N.SOUL</div>
+                        </div>
+                        <div class="org-item">
+                            <div class="korean">NSW</div>
+                            <div class="english">NS.WHITE</div>
+                        </div>
+                        <div class="org-item" style="transform: translateX(-10px);">
+                            <div class="korean">엔뮤즈</div>
+                            <div class="english">N.MUSE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tree">
+                    <div class="org-item" style="transform: translateY(100px);">
+                        <div class="korean">수니엔터</div>
+                        <div class="english">SOONI ENT</div>
+                    </div>
+                    <div class="line-down"></div>
+                    <div class="line-horizontal">
+                        <div class="line-vertical v1 ent-line"></div>
+                        <div class="line-vertical v2 ent-line"></div>
+                        <div class="line-vertical v3 ent-line"></div>
+                    </div>
+                    <div class="branches">
+                        <div class="org-item" style="transform: translateX(13px);">
+                            <div class="korean">NSB</div>
+                            <div class="english">NS.BLACK</div>
+                        </div>
+                        <div class="org-item">
+                            <div class="korean">수니힐</div>
+                            <div class="english">SOONI HEAL</div>
+                        </div>
+                        <div class="org-item" style="transform: translateX(-20px);">
+                            <div class="korean">NSG</div>
+                            <div class="english">NS.GRAY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tree">
+                    <div class="org-item" style="transform: translateY(100px);">
+                        <div class="korean">수니게임즈</div>
+                        <div class="english">SOONI GAMES</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 페이지 이동 및 재생 버튼 -->
+        <img src="images/prev.png" class="arrow-img left-button" onclick="goPrev(); playSound();">
+        <img src="images/next.png" class="arrow-img right-button" onclick="goNext(); playSound();">
+        <img src="images/play.png" class="control-button play-btn" onclick="playAudio();">
+        <img src="images/pause.png" class="control-button pause-btn" onclick="pauseAudio();">
+        <img src="images/stop.png" class="control-button stop-btn" onclick="stopAudio();">
+        <img id="soundToggle" src="images/sound_on.png" class="control-button sound-btn" onclick="toggleSound();">
+
+    </div>
+
+    <audio id="page4Audio">
+        <source src="audio/sooni_page4_audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById("page4Audio");
+        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
+        let played = false;
+
+        window.onload = function() {
+            if (sessionStorage.getItem("soundState") === null) {
+                soundState = true;
+                sessionStorage.setItem("soundState", true);
+            }
+            if (!soundState) {
+                document.getElementById("soundToggle").src = "images/sound_off.png";
+            }
+        };
+
+        function playSound() {
+            if (!played && soundState) {
+                audio.currentTime = 0;
+                audio.play();
+                played = true;
+            }
+        }
+
+        function goPrev() { window.location.href = "page3.html"; }
+        function goNext() { window.location.href = "page5.html"; }
+        function playAudio() { if (soundState) { audio.play(); played = true; } }
+        function pauseAudio() { audio.pause(); }
+        function stopAudio() { audio.pause(); audio.currentTime = 0; }
+        function toggleSound() {
+    soundState = !soundState;
+    document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
+    sessionStorage.setItem("soundState", soundState);
+    audio.volume = soundState ? 1 : 0;  // ✅ 소리만 꺼짐, 재생 유지
+}
+
+    </script>
+</body>
+</html>
