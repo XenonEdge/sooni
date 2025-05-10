@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,88 +10,110 @@
       font-family: 'KkotNaeum';
       src: url('fonts/나눔손글씨 꽃내음.ttf') format('truetype');
     }
+    @font-face {
+      font-family: 'Schoolbell';
+      src: url('fonts/Schoolbell.ttf') format('truetype');
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background-color: #000;
-    }
-    .background {
-      position: fixed;
-      top: 50%;
-      left: 50%;
       width: 100vw;
       height: 100vh;
-      transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: #000;
+      font-family: 'KkotNaeum', sans-serif;
+      overflow: hidden;
     }
-    .background img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+
+    .wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
-    .content {
+
+    .background {
       position: absolute;
-      top: 50;
+      top: 0;
       left: 0;
-      z-index: 1;
       width: 100%;
       height: 100%;
-      color: white;
-      font-family: 'KkotNaeum', sans-serif;
+      z-index: 0;
     }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
     .content img {
       position: absolute;
     }
-    .smile { top: 10%; left: 10%; width: 80px; }
-    .wave { bottom: 5%; left: 20%; width: 200px; }
-    .flower { top: 10%; right: 10%; width: 80px; }
-    .arrow { bottom: 20%; right: 15%; width: 100px; }
-    .spark { top: 40%; left: 50%; transform: translateX(-50%); width: 50px; }
+
+    .smile  { top: 10vh; left: 10vw; width: 6vw; }
+    .wave   { bottom: 5vh; left: 20vw; width: 14vw; }
+    .flower { top: 10vh; right: 10vw; width: 6vw; }
+    .arrow  { bottom: 20vh; right: 15vw; width: 8vw; }
+    .spark  { top: 46vh; left: 32.5vw; transform: translateX(-50%); width: 3vw; }
+
     .text {
       position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2rem;
+      color: white;
       text-align: center;
+      font-size: 13.5vh;
+    }
+
+#talkers {
+  top: 65vh;
+  left: 10vw;
+  text-align: center; /* 이 줄 추가 */
+  font-size: 2vh;
+  font-family: 'KkotNaeum', sans-serif;
+}
+
+
+    #main-title {
+      top: 30vh;
+      left: 50vw;
+      transform: translateX(-50%);
+      font-family: 'Schoolbell', cursive;
+      font-size: 13vh;
     }
   </style>
 </head>
 <body>
-  <div class="background">
-    <img src="images/chalkboard_bg.png" alt="배경 이미지">
+  <div class="wrapper">
+    <div class="background">
+      <img src="images/chalkboard_bg.png" alt="배경 이미지">
+    </div>
+
+    <div class="content">
+      <img src="images/smile.png" class="smile" />
+      <img src="images/wave.png" class="wave" />
+      <img src="images/flower.png" class="flower" />
+      <img src="images/arrow.png" class="arrow" />
+      <img src="images/spark.png" class="spark" />
+
+      <div class="text" id="talkers"  text-align: center;>
+        <div>떠든 사람</div>
+        <div style="margin-top: 1vh;">남순</div>
+        <div style="margin-top: 0.5vh;">배그나</div>
+        <div style="margin-top: 0.5vh;">빡다혜</div>
+      </div>
+
+      <div class="text" id="main-title">
+        Welcome<br>SOONI GROUP
+      </div>
+    </div>
   </div>
-  <div class="content">
-    <img src="images/smile.png" class="smile" />
-    <img src="images/wave.png" class="wave" />
-    <img src="images/flower.png" class="flower" />
-    <img src="images/arrow.png" class="arrow" />
-    <img src="images/spark.png" class="spark" />
-    
-  </div>
-
-
-
-
-
-<div class="text" id="talkers" style="top: 70%; left: 15%; font-family: 'KkotNaeum', sans-serif; font-size: 1.8rem; color: white;">
-  <div>떠든 사람</div>
-  <div style="margin-top: 10px;">남순</div>
-  <div style="margin-top: 5px;">배그나</div>
-  <div style="margin-top: 5px;">빡다혜</div>
-</div>
-
-</div>
-
-
-<div class="text" style="top: 30%; left: 50%; font-family: 'KkotNaeum', sans-serif; font-size: 2rem; color: white;">
-  Welcom sooni GROUP
-</div>
-
 </body>
 </html>
