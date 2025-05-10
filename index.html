@@ -1,189 +1,96 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>DO YOU KNOW SOONI GROUP</title>
-    <link href="fonts/PressStart2P-Regular.ttf" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            font-family: 'Press Start 2P', cursive;
-            color: white;
-            overflow: hidden;
-        }
-        .switch-frame {
-            width: 100vw;
-            height: 100vh;
-            background: url('images/Switch_with_SOONI_GROUP_HussarBold_with_START.png') no-repeat center;
-            background-size: contain;
-            position: relative;
-            overflow: hidden;
-        }
-        .screen-inner {
-            flex-direction: column;
-            justify-content: space-between;
-            position: absolute;
-            top: 14.5%;
-            left: 11.5%;
-            width: 77%;
-            height: 71%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1vw;
-        }
-        .line1, .line2 {
-            animation: subtleShake 1.8s infinite;
-        }
-        .line1 {
-            font-size: 4em;
-            color: white;
-            text-shadow: 1px 0 red, -1px 0 blue, 2px 0 red, -2px 0 blue;
-        }
-        .line2 {
-            font-size: 3.6em;
-            color: white;
-            text-shadow: 1px 0 red, -1px 0 blue, 2px 0 red, -2px 0 blue;
-        }
-        @keyframes subtleShake {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(0.5px, -0.5px); }
-            50% { transform: translate(-0.5px, 0.5px); }
-            75% { transform: translate(0.5px, 0.5px); }
-            100% { transform: translate(0, 0); }
-        }
-        .start-button {
-            margin-top: 2em;
-            padding: 0.5em 1.2em;
-            font-size: 1.5em;
-            background-color: #FF3C28;
-            color: white;
-            border: none;
-            border-radius: 1em;
-            cursor: pointer;
-            font-family: 'Press Start 2P', cursive;
-            animation: glow 1.5s infinite alternate;
-        }
-        @keyframes glow {
-            from { box-shadow: 0 0 0.5em #FF3C28; }
-            to { box-shadow: 0 0 1.5em #FF3C28; }
-        }
-        .control-panel {
-            gap: 0.6vw;
-            padding-bottom: 0.3em;
-            margin-top: 1.6em;
-            padding-bottom: 0.5em;
-            position: absolute;
-            bottom: 9%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1vw;
-        }
-        .control-button {
-            width: 3.2vw;
-            width: 4vw;
-            height: auto;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>칠판 사이트</title>
+  <style>
+    @font-face {
+      font-family: 'KkotNaeum';
+      src: url('fonts/나눔손글씨 꽃내음.ttf') format('truetype');
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+    .background {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .background img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .content {
+      position: absolute;
+      top: 50;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      color: white;
+      font-family: 'KkotNaeum', sans-serif;
+    }
+    .content img {
+      position: absolute;
+    }
+    .smile { top: 10%; left: 10%; width: 80px; }
+    .wave { bottom: 5%; left: 20%; width: 200px; }
+    .flower { top: 10%; right: 10%; width: 80px; }
+    .arrow { bottom: 20%; right: 15%; width: 100px; }
+    .spark { top: 40%; left: 50%; transform: translateX(-50%); width: 50px; }
+    .text {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <div class="switch-frame" onclick="playSound()">
-        <div class="screen-inner">
-            <div class="text-area">
-            <div class="line1">DO YOU KNOW</div>
-            <div class="line2">SOONI GROUP</div>
-            </div>
-            <button class="start-button" onclick="startQuiz()">START</button>
-        </div>
-                    <div class="control-panel">
-            <img src="images/play.png" class="control-button" onclick="playAudio();">
-            <img src="images/pause.png" class="control-button" onclick="pauseAudio();">
-            <img src="images/stop.png" class="control-button" onclick="stopAudio();">
-            <img id="soundToggle" src="images/sound_on.png" class="control-button" onclick="toggleSound();">
-                    </div>
-        </div>
-    </div>
+  <div class="background">
+    <img src="images/chalkboard_bg.png" alt="배경 이미지">
+  </div>
+  <div class="content">
+    <img src="images/smile.png" class="smile" />
+    <img src="images/wave.png" class="wave" />
+    <img src="images/flower.png" class="flower" />
+    <img src="images/arrow.png" class="arrow" />
+    <img src="images/spark.png" class="spark" />
+    
+  </div>
 
-    <audio id="startSound">
-        <source src="audio/sooni_intro.mp3" type="audio/mpeg">
-    </audio>
 
-    <script>
-        const audio = document.getElementById("startSound");
-        let soundState = (sessionStorage.getItem("soundState") === "false") ? false : true;
-        let played = false;
 
-        window.onload = function() {
-            if (sessionStorage.getItem("soundState") === null) {
-                soundState = true;
-                sessionStorage.setItem("soundState", true);
-            }
-            if (!soundState) {
-                document.getElementById("soundToggle").src = "images/sound_off.png";
-            }
-        };
 
-        function playSound() {
-            if (!played && soundState) {
-                audio.currentTime = 0;
-                audio.play();
-                played = true;
-            }
-        }
-        function startQuiz() {
-            window.location.href = "page2.html";
-        }
-        function playAudio() { if (soundState) { audio.play(); played = true; } }
-        function pauseAudio() { audio.pause(); }
-        function stopAudio() { audio.pause(); audio.currentTime = 0; }
-        function toggleSound() {
-            soundState = !soundState;
-            document.getElementById("soundToggle").src = soundState ? "images/sound_on.png" : "images/sound_off.png";
-            sessionStorage.setItem("soundState", soundState);
-            audio.volume = soundState ? 1 : 0;
-        }
-    </script>
 
-<!-- 전체화면 버튼 -->
-<button onclick="enterFullscreen()" class="fullscreen-button">전체화면</button>
+<div class="text" id="talkers" style="top: 70%; left: 15%; font-family: 'KkotNaeum', sans-serif; font-size: 1.8rem; color: white;">
+  <div>떠든 사람</div>
+  <div style="margin-top: 10px;">남순</div>
+  <div style="margin-top: 5px;">배그나</div>
+  <div style="margin-top: 5px;">빡다혜</div>
+</div>
 
-<style>
-@media screen and (max-width: 768px) {
-  .fullscreen-button {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    background-color: #ff3c28;
-    color: white;
-    font-family: 'Press Start 2P', cursive;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    z-index: 9999;
-    cursor: pointer;
-    font-size: 0.7em;
-  }
-}
-</style>
+</div>
 
-<script>
-function enterFullscreen() {
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen();
-  }
-}
-</script>
+
+<div class="text" style="top: 30%; left: 50%; font-family: 'KkotNaeum', sans-serif; font-size: 2rem; color: white;">
+  Welcom sooni GROUP
+</div>
 
 </body>
 </html>
