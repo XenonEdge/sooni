@@ -1,119 +1,128 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>칠판 사이트</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>해상도 선택 + 자동 맞춤</title>
   <style>
-    @font-face {
-      font-family: 'KkotNaeum';
-      src: url('fonts/나눔손글씨 꽃내음.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Schoolbell';
-      src: url('fonts/Schoolbell.ttf') format('truetype');
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #000;
-      font-family: 'KkotNaeum', sans-serif;
-      overflow: hidden;
-    }
-
-    .wrapper {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .background img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    .content img {
-      position: absolute;
-    }
-
-    .smile  { top: 10vh; left: 10vw; width: 6vw; }
-    .wave   { bottom: 5vh; left: 20vw; width: 14vw; }
-    .flower { top: 10vh; right: 10vw; width: 6vw; }
-    .arrow  { bottom: 20vh; right: 15vw; width: 8vw; }
-    .spark  { top: 46vh; left: 32.5vw; transform: translateX(-50%); width: 3vw; }
-
-    .text {
-      position: absolute;
+    body {
+      font-family: sans-serif;
+      background-color: #111;
       color: white;
-      text-align: center;
-      font-size: 13.5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
 
-    #talkers {
-      top: 65vh;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      font-size: 2vh;
-      font-family: 'KkotNaeum', sans-serif;
+    h1 {
+      margin-bottom: 20px;
     }
 
-    #main-title {
-      top: 30vh;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Schoolbell', cursive;
-      font-size: 13vh;
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: white;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    #viewer-wrapper {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    #main-frame {
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="background">
-      <img src="images/chalkboard_bg.png" alt="배경 이미지">
-    </div>
-
-    <div class="content">
-      <img src="images/smile.png" class="smile" />
-      <img src="images/wave.png" class="wave" />
-      <img src="images/flower.png" class="flower" />
-      <img src="images/arrow.png" class="arrow" />
-      <img src="images/spark.png" class="spark" />
-
-      <div class="text" id="talkers">
-        <div>떠든 사람</div>
-        <div style="margin-top: 1vh;">남순</div>
-        <div style="margin-top: 0.5vh;">배그나</div>
-        <div style="margin-top: 0.5vh;">빡다혜</div>
-      </div>
-
-      <div class="text" id="main-title">
-        Welcome<br>SOONI GROUP
-      </div>
-    </div>
+  <div id="selector">
+    <h1>원하는 해상도를 선택하세요</h1>
+    <select id="resolution">
+      <option value="auto">자동 맞춤 (브라우저 창 크기)</option>
+      <option value="640x360">640 x 360</option>
+      <option value="854x480">854 x 480</option>
+      <option value="1280x720">1280 x 720</option>
+      <option value="1366x768">1366 x 768</option>
+      <option value="1600x900">1600 x 900</option>
+      <option value="1920x1080">1920 x 1080</option>
+      <option value="2560x1440">2560 x 1440</option>
+      <option value="3840x2160">3840 x 2160</option>
+    </select>
+    <button class="btn" onclick="loadMain()">실행</button>
   </div>
+
+  <div id="viewer-wrapper">
+    <iframe id="main-frame" src=""></iframe>
+  </div>
+
+  <script>
+    function loadMain() {
+      const res = document.getElementById("resolution").value;
+      const frame = document.getElementById("main-frame");
+
+      if (res === "auto") {
+        frame.style.width = window.innerWidth + "px";
+        frame.style.height = window.innerHeight + "px";
+      } else {
+        const [w, h] = res.split("x").map(Number);
+        frame.style.width = w + "px";
+        frame.style.height = h + "px";
+      }
+
+      frame.src = "main.html";
+      sessionStorage.setItem("lastPage", "main.html");
+      sessionStorage.setItem("lastRes", res);
+      document.getElementById("selector").style.display = "none";
+      document.getElementById("viewer-wrapper").style.display = "flex";
+    }
+
+    window.addEventListener("load", () => {
+      const saved = sessionStorage.getItem("lastPage");
+      const res = sessionStorage.getItem("lastRes");
+      const frame = document.getElementById("main-frame");
+
+      if (saved && res) {
+        if (res === "auto") {
+          frame.style.width = window.innerWidth + "px";
+          frame.style.height = window.innerHeight + "px";
+        } else {
+          const [w, h] = res.split("x").map(Number);
+          frame.style.width = w + "px";
+          frame.style.height = h + "px";
+        }
+
+        frame.src = saved;
+        document.getElementById("selector").style.display = "none";
+        document.getElementById("viewer-wrapper").style.display = "flex";
+      }
+    });
+
+    window.addEventListener("beforeunload", () => {
+      const frame = document.getElementById("main-frame");
+      if (frame && frame.src) {
+        sessionStorage.setItem("lastPage", frame.contentWindow.location.pathname);
+      }
+    });
+  </script>
 </body>
 </html>
