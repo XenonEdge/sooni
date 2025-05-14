@@ -137,6 +137,18 @@
             text-align: center;
             color: #777;
         }
+       .notices { /* 추가된 안내 문구 스타일 */
+            margin-top: 15px;
+            text-align: left;
+            font-size: 0.9em;
+            color: #666;
+            padding: 10px;
+            border-top: 1px dashed #ddd; 
+        }
+        .notices p {
+            margin: 5px 0;
+        }
+
     </style>
 </head>
 <body>
@@ -149,9 +161,17 @@
         <div id="results">
             <p class="no-results">검색 결과가 여기에 표시됩니다.</p>
         </div>
+  <div class="notices">
+                <p>• 개인이 심심해서 만든거라 허접하니 이해부탁드려요.</p>
+                <p>• 데이터는 2025년 1월 ~ 5월 TJ미디어 TOP100 기준입니다.</p>
+                <p>• 곡 제목, 가수명, 외국어를 한글발음으로도 검색이 가능합니다.(예시my love->마이러브, Drowning->드라우닝)</p>
+                <p>• 같은 곡이라도 노래방 번호에 따라 두 개가 검색될 수 있습니다.</p>
+                <p>• 뮤비나 방송 영상으로 인해 가사 있는 음악으로 대체될 수 있습니다.</p>
+                <p>• 영상은 외부노출금지했을 경우 재생이 안될수도 있음. 가운데 유튜브에서 보기 누르면 넘어갑니다.</p>
+ 
+            </div>
     </div>
-
-    <script>
+   <script>
         // --- 데이터 정의 (youtubeId 포함) ---
   const data_2025_01_Gayo = {
     year: 2025, month: 1, category: "가요",
@@ -6235,6 +6255,7 @@ const allChartData = [
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = `<p class="no-results">검색 결과가 여기에 표시됩니다.</p>`;
         }
-    </script>
+
+   </script>
 </body>
 </html>
