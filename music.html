@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOONI MUSIC</title>
+  <style>
+    @font-face {
+      font-family: 'SpriteGraffiti';
+      src: url('fonts/sprite-graffiti-3.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: 'Jalnan';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/chalkboard.png') no-repeat center center;
+      background-size: cover;
+      background-color: black;
+      overflow-x: auto;
+      font-family: 'SpriteGraffiti', cursive;
+      position: relative;
+      color: white;
+    }
+
+    .main-text {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 6vw;
+      text-align: center;
+      text-shadow: 2px 2px 0px #00000033;
+      z-index: 10;
+    }
+
+    .gallery-wrap {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      z-index: 5;
+    }
+
+    .album {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .album img.cover {
+      width: 15vw;
+      margin-bottom: 5px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 18px;
+      margin-top: -100px;
+    }
+
+    .controls img {
+      width: 2.5vw;
+      height: 2.5vw;
+      max-width: 60px;
+      max-height: 60px;
+      cursor: pointer;
+    }
+
+    .img-button {
+      width: 220px;
+      position: absolute;
+      bottom: 30px;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .img-button.next { right: 10%; }
+    .img-button.prev { left: 10%; }
+
+    .popup-select, .popup-select * {
+      font-family: 'Jalnan', sans-serif !important;
+    }
+
+    .popup-select {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #111;
+      border: 2px solid white;
+      padding: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      width: auto;
+      max-width: 90vw;
+    }
+
+    .popup-select .button-group {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .popup-select button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .popup-video {
+      margin-top: 10px;
+      width: 80vw;
+      height: 45vw; 
+      border: none;
+    }
+
+    @media (min-width: 1200px) {
+        .popup-video {
+            width: 960px;
+            height: 540px;
+        }
+    }
+
+    @media (max-width: 2559px) {
+      .img-button { width: 190px; }
+    }
+
+    @media (max-width: 1599px) {
+      .img-button { width: 110px; }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="main-text">SOONI MUSIC</div>
+
+  <div class="gallery-wrap">
+    <div class="album">
+      <img src="images/music2.png" alt="너를 만나 빛나는 순간" class="cover" />
+      <div class="controls">
+        <img src="images/play.png" alt="재생" onclick="event.stopPropagation(); showPopup('moment-popup')" />
+        <img src="images/pause.png" alt="일시정지" />
+        <img src="images/stop.png" alt="정지" />
+      </div>
+    </div>
+
+    <div class="album">
+      <img src="images/music1.png" alt="NS-Mas" class="cover" />
+      <div class="controls">
+        <img src="images/play.png" alt="재생" onclick="event.stopPropagation(); showPopup('select-popup')" />
+        <img src="images/pause.png" alt="일시정지" />
+        <img src="images/stop.png" alt="정지" />
+      </div>
+    </div>
+
+    <div class="album">
+      <img src="images/music4.png" alt="눈부신 날이었는데" class="cover" />
+      <div class="controls">
+        <img src="images/play.png" alt="재생" onclick="event.stopPropagation(); showPopup('dazzling-popup')" />
+        <img src="images/pause.png" alt="일시정지" />
+        <img src="images/stop.png" alt="정지" />
+      </div>
+    </div>
+
+    <div class="album">
+      <img src="images/music3.png" alt="ZIG ZAG" class="cover" />
+      <div class="controls">
+        <img src="images/play.png" alt="재생" onclick="event.stopPropagation(); showPopup('zigzag-popup')" />
+        <img src="images/pause.png" alt="일시정지" />
+        <img src="images/stop.png" alt="정지" />
+      </div>
+    </div>
+
+    <div class="album">
+      <img src="images/music5.png" alt="나를 사랑했던 사랑아" class="cover" />
+      <div class="controls">
+        <img src="images/play.png" alt="재생" onclick="event.stopPropagation(); showPopup('nareul-popup')" />
+        <img src="images/pause.png" alt="일시정지" />
+        <img src="images/stop.png" alt="정지" />
+      </div>
+    </div>
+  </div>
+
+  <a href="SOONI.html">
+    <img src="images/prev_button.png" class="img-button prev" alt="이전" />
+  </a>
+  <a href="list.html">
+    <img src="images/next_button.png" class="img-button next" alt="다음" />
+  </a>
+
+  <div id="moment-popup" class="popup-select" style="display: none;">
+    <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
+    <div class="button-group">
+      <button onclick="playVideoInPopup('moment-popup', '_qb0nYKGyUw')">음원</button>
+      <button onclick="playUrlInPopup('moment-popup', 'https://vod.sooplive.co.kr/player/127860423/embed?showChat=true&autoPlay=true&mutePlay=true')">무대</button>
+    </div>
+    <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div id="select-popup" class="popup-select" style="display: none;">
+    <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
+    <div class="button-group">
+      <button onclick="playVideoInPopup('select-popup', 'X_ECE_UtuQQ')">음원</button>
+      <button onclick="playVideoInPopup('select-popup', 'e3hS0YErZ34')">무대</button>
+    </div>
+    <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div id="dazzling-popup" class="popup-select" style="display: none;">
+    <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
+    <div class="button-group">
+      <button onclick="playVideoInPopup('dazzling-popup', '4')">음원</button>
+      <button onclick="playUrlInPopup('dazzling-popup', 'https://vod.sooplive.co.kr/player/158353447/embed?showChat=true&autoPlay=true&mutePlay=true')">무대</button>
+    </div>
+    <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div id="zigzag-popup" class="popup-select" style="display: none;">
+    <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
+    <div class="button-group">
+      <button onclick="playVideoInPopup('zigzag-popup', '5z8qURpyaBk')">음원</button>
+      <button onclick="playUrlInPopup('zigzag-popup', 'https://vod.sooplive.co.kr/player/148968205/embed?showChat=false&autoPlay=true&mutePlay=true')">무대</button>
+    </div>
+    <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div id="nareul-popup" class="popup-select" style="display: none;">
+    <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
+    <div class="button-group">
+      <button onclick="playVideoInPopup('nareul-popup', 'Mqd8y8FJ03g')">음원</button>
+      <button onclick="playVideoInPopup('nareul-popup', 'XMTTOHXXd3s')">무대</button>
+    </div>
+    <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    let visibleIframe = null;
+
+    // 이 함수는 이제 사용되지 않지만, 만약을 위해 남겨둡니다.
+    function playYoutubeVideoOnly(videoId) {
+      if (!visibleIframe) {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=0";
+        iframe.style.position = "fixed";
+        iframe.style.top = "50%";
+        iframe.style.left = "50%";
+        iframe.style.transform = "translate(-50%, -50%)";
+        iframe.style.width = "960px";
+        iframe.style.height = "540px";
+        iframe.style.zIndex = "999";
+        iframe.id = "centeredYoutubePlayer";
+        document.body.appendChild(iframe);
+        visibleIframe = iframe;
+      }
+    }
+
+    function showPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            hideAllPopups();
+            popup.style.display = 'flex';
+        }
+    }
+
+    function playVideoInPopup(popupId, videoId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            const iframe = popup.querySelector('.popup-video');
+            if (iframe) {
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+            }
+        }
+    }
+
+    function playUrlInPopup(popupId, url) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            const iframe = popup.querySelector('.popup-video');
+            if (iframe) {
+                iframe.src = url;
+            }
+        }
+    }
+
+    function hideAllPopups() {
+        document.querySelectorAll('.popup-select').forEach(popup => {
+            popup.style.display = 'none';
+            const iframe = popup.querySelector('.popup-video');
+            if (iframe) {
+                iframe.src = '';
+            }
+        });
+    }
+
+    document.addEventListener("click", function(event) {
+        if (event.target.closest('.controls > img[onclick*="showPopup"]')) {
+            return;
+        }
+        if (!event.target.closest('.popup-select')) {
+            hideAllPopups();
+        }
+        const centeredPlayer = document.getElementById("centeredYoutubePlayer");
+        if (centeredPlayer && !centeredPlayer.contains(event.target)) {
+            centeredPlayer.remove();
+            visibleIframe = null;
+        }
+    });
+    
+    sessionStorage.setItem("lastPage", location.pathname);
+  </script>
+
+</body>
+</html>
