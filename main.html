@@ -8,15 +8,10 @@
     /* 폰트 정의 */
     @font-face {
       font-family: 'SpriteGraffiti';
-      /* 중요: fonts 폴더가 main.html과 같은 수준에 있거나 올바른 상대 경로여야 합니다. */
       src: url('fonts/sprite-graffiti-3.woff') format('woff'),
            url('fonts/sprite-graffiti-3.ttf') format('truetype');
     }
-    @font-face {
-      font-family: 'KkotNaeum';
-      /* 중요: fonts 폴더가 main.html과 같은 수준에 있거나 올바른 상대 경로여야 합니다. */
-      src: url('fonts/나눔손글씨 꽃내음.ttf') format('truetype');
-    }
+    /* 'KkotNaeum' 폰트는 사용되지 않아 삭제했습니다. */
 
     /* 기본 스타일 */
     html, body {
@@ -24,9 +19,8 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      /* 중요: images 폴더가 main.html과 같은 수준에 있거나 올바른 상대 경로여야 합니다. */
       background: url('images/chalkboard.png') no-repeat center center;
-      background-size: contain; /* 이미지가 잘리지 않고 모두 보이도록 contain으로 변경 고려 */
+      background-size: contain;
       background-color: black;
       color: white;
       font-family: sans-serif; /* 기본 폰트 */
@@ -41,7 +35,7 @@
       transform: translate(-50%, -50%);
       color: white;
       font-family: 'SpriteGraffiti', sans-serif;
-      font-size: 10vw; /* 뷰포트 너비에 비례하는 폰트 크기 */
+      font-size: 10vw;
       text-align: center;
       z-index: 2;
       text-shadow: 2px 2px 0px #00000033;
@@ -69,781 +63,41 @@
     /* 칠판 밑줄 이미지 스타일 */
     .chalk-bg {
       position: absolute;
-      top: 72%; /* sub-text와의 간격 조절 필요시 수정 */
+      top: 72%;
       left: 50%;
-      transform: translate(-50%, -20%); /* 위치 조절 */
+      transform: translate(-50%, -20%);
       width: 40vw;
       height: auto;
     }
 
-    /* 이미지 버튼 공통 스타일 */
-    
-
-
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-
-
-@media (max-width: 2559px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1920 해상도 */
-}
-@media (max-width: 1919px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1280 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-
-
-@media (max-width: 2559px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1920 해상도 */
-}
-@media (max-width: 1919px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1280 이하 */
-}
- /* 1920 / 2560 = 0.75 */
-}
-@media (max-width: 1919px) {
-  
-
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-
-
-@media (max-width: 2559px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1920 해상도 */
-}
-@media (max-width: 1919px) {
-  
-
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-
-@media (max-width: 2559px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1919px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-@media (max-width: 1599px) {
-  
-.img-button {
-  width: 220px; /* 기준: 2560px */
-  height: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 5%;
-  z-index: 10;
-  cursor: pointer;
-}
-
-@media (max-width: 2559px) {
-  .img-button { width: 190px; }  /* 1600 ~ 2559 */
-}
-@media (max-width: 1599px) {
-  .img-button { width: 110px; }  /* 1599 이하 */
-}
-
-}
-  /* 1280 이하 */
-}
-  /* 1280 / 2560 = 0.5 */
-}
-
-
-    /* 다음 버튼 스타일 */
+    /* --- (수정) 이미지 버튼 스타일 정리 --- */
+    .img-button {
+      height: auto;
+      position: absolute;
+      bottom: 30px;
+      z-index: 10;
+      cursor: pointer;
+      width: 220px; /* 기본 너비 (2560px 초과 화면용) */
+    }
     .img-button.next {
-      right: 10%;
+      right: 4%;
+    }
+    .img-button.prev { /* 현재 페이지에는 없지만, 다른 페이지와 통일성을 위해 유지 */
+      left: 4%;
     }
 
-    /* 이전 버튼 스타일 (현재 HTML에는 없음) */
-    .img-button.prev {
-      left: 5%;
+    /* 화면 크기에 따른 버튼 너비 조절 */
+    @media (max-width: 2559px) { /* 1600px ~ 2559px */
+      .img-button {
+        width: 190px;
+      }
     }
+    @media (max-width: 1599px) { /* 1599px 이하 */
+      .img-button {
+        width: 110px;
+      }
+    }
+    /* --- 여기까지 이미지 버튼 스타일 정리 --- */
 
     /* 장식 이미지 공통 스타일 */
     .deco {
@@ -851,51 +105,48 @@
       z-index: 1;
       opacity: 0.9;
     }
-
     .deco-arrow {
       top: 15%;
       left: 15%;
       width: 7%;
     }
-
     .deco-curve {
       top: 10%;
       right: 15%;
       width: 7%;
     }
-
     .deco-star {
       top: 3%;
       right: 26%;
       width: 3%;
     }
   </style>
-
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-size: cover !important;
-  }
-  .main-text {
-    font-size: 9vw !important;
-  }
-  .sub-text {
-    font-size: 5vw !important;
-  }
-  .chalk-bg {
-    width: 35vw !important;
-  }
-</style>
-<script>
-  window.addEventListener("resize", () => {
-    location.reload();
-  });
-</script>
-
+<style> 블록은 첫 번째 스타일을 덮어쓰는 내용으로, 유지합니다. */}
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-size: cover !important;
+    }
+    .main-text {
+      font-size: 10vw !important;
+    }
+    .sub-text {
+      font-size: 7vw !important;
+    }
+    .chalk-bg {
+      width: 35vw !important;
+    }
+  </style>
+  
+  <script>
+    window.addEventListener("resize", () => {
+      location.reload();
+    });
+  </script>
 </head>
 <body>
   <div class="main-text">WELCOME</div>
@@ -912,13 +163,9 @@
     <img src="images/next_button.png" alt="NEXT" class="img-button next" />
   </a>
   
+
   <script>
-    console.log("main.html loaded successfully!");
+    sessionStorage.setItem("lastPage", location.pathname);
   </script>
-
-<script>
-  sessionStorage.setItem("lastPage", location.pathname);
-</script>
-
 </body>
 </html>

@@ -71,7 +71,7 @@
     }
 
     .controls img {
-      width: 2.5vw;
+      width: clamp(30px, 3vw, 60px);
       height: 2.5vw;
       max-width: 60px;
       max-height: 60px;
@@ -86,8 +86,12 @@
       cursor: pointer;
     }
 
-    .img-button.next { right: 10%; }
-    .img-button.prev { left: 10%; }
+    .img-button.next {
+  right: 4%;
+}
+    .img-button.prev {
+  left: 4%;
+}
 
     .popup-select, .popup-select * {
       font-family: 'Jalnan', sans-serif !important;
@@ -146,7 +150,7 @@
   </style>
 </head>
 <body>
-  <div class="main-text">SOONI MUSIC</div>
+  <div class="main-text">SOONI Album</div>
 
   <div class="gallery-wrap">
     <div class="album">
@@ -195,10 +199,10 @@
     </div>
   </div>
 
-  <a href="SOONI.html">
+  <a href="sooni.html">
     <img src="images/prev_button.png" class="img-button prev" alt="이전" />
   </a>
-  <a href="list.html">
+  <a href="tier.html">
     <img src="images/next_button.png" class="img-button next" alt="다음" />
   </a>
 
@@ -223,7 +227,7 @@
   <div id="dazzling-popup" class="popup-select" style="display: none;">
     <div style="font-size:1.5em; margin-bottom:10px;">어떤 버전을 재생할까요?</div>
     <div class="button-group">
-      <button onclick="playVideoInPopup('dazzling-popup', '4')">음원</button>
+      <button onclick="playVideoInPopup('dazzling-popup', 'ztnDTKOXjPM')">음원</button>
       <button onclick="playUrlInPopup('dazzling-popup', 'https://vod.sooplive.co.kr/player/158353447/embed?showChat=true&autoPlay=true&mutePlay=true')">무대</button>
     </div>
     <iframe class="popup-video" src="" allow="autoplay; encrypted-media; web-share" allowfullscreen></iframe>

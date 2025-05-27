@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOONI TIER</title>
+  <style>
+    @font-face {
+      font-family: 'SpriteGraffiti';
+      src: url('fonts/sprite-graffiti-3.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Jalnan';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/chalkboard.png') no-repeat center center;
+      background-size: cover;
+      background-color: black;
+      overflow-x: hidden;
+      font-family: 'SpriteGraffiti', cursive;
+      position: relative;
+      color: white;
+    }
+    .main-text {
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 6vw;
+      text-align: center;
+      text-shadow: 2px 2px 0px #00000033;
+      z-index: 10;
+    }
+    .sub-text {
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      font-size: clamp(16px, 2vw, 24px);
+      color: white;
+      text-align: center;
+      font-family: 'Jalnan', sans-serif;
+      line-height: 1.8;
+      z-index: 10;
+    }
+    .tier-tab {
+      display: none;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: clamp(1000px, 70vw, 1800px);
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1vw 1vw 1vw 2vw;
+      border-radius: 1vw;
+      font-size: clamp(13px, 1.0vw, 18px);
+      line-height: 1.8;
+      font-family: 'Jalnan', sans-serif;
+      z-index: 9;
+      box-sizing: border-box;
+
+    }
+    .tier-tab.active {
+      display: block;
+    }
+    .tier-icon-container {
+      text-align:center;
+      margin-bottom: 2vw;
+    }
+    .tier-icon {
+      width: 7vw;
+      min-width: 50px;
+      margin: 0 1vw;
+      transition: transform 0.3s ease;
+    }
+    .tier-icon:hover {
+      transform: scale(1.1);
+    }
+    .rule-container {
+      display: flex;
+      margin-top: 1em;
+    }
+    .rule-title {
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+    .rule-description {
+      padding-left: 1em;
+    }
+    /* --- skill 탭 내부 이미지 정리를 위한 스타일 --- */
+    .skill-tier-images {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2vw;
+      margin-bottom: 2vw;
+    }
+    .skill-tier-image {
+      max-width: 45%;
+      height: auto;
+    }
+    .img-button {
+      width: 220px;
+      position: absolute;
+      bottom: 30px;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .img-button.next { right: 4%; }
+    .img-button.prev { left: 4%; }
+    @media (max-width: 2559px) {
+      .img-button { width: 190px; }
+    }
+    @media (max-width: 1599px) {
+      .img-button { width: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-text"> TIER</div>
+  <div class="sub-text">수니그룹에는 기여도 / 실력으로 티어가 있습니다.</div>
+
+  <div style="margin-top: 225px; display: flex; justify-content: center; gap: 20px;">
+    <div class="tier-box" onclick="showTab('donation')" style="position: relative; display: inline-block; cursor: pointer;">
+      <img src="images/tier_box_frame.png" style="width: 150px;">
+      <div style="position: absolute; top: 0; left: 0; width: 95%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <img src="images/contribution_new.png" style="max-width: 70%; height: auto;">
+      </div>
+    </div>
+    <div class="tier-box" onclick="showTab('skill')" style="position: relative; display: inline-block; cursor: pointer;">
+      <img src="images/tier_box_frame.png" style="width: 150px;">
+      <div style="position: absolute; top: 0; left: 0; width: 95%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <img src="images/skill_new.png" style="max-width: 70%; height: auto;">
+      </div>
+    </div>
+  </div>
+
+  <div id="donation" class="tier-tab active">
+    <div class="tier-icon-container">
+      <img src="images/Platinum.png" class="tier-icon" alt="Platinum" />
+      <img src="images/gold.png" class="tier-icon" alt="Gold" />
+      <img src="images/silver.png" class="tier-icon" alt="Silver" />
+      <img src="images/bronze.png" class="tier-icon" alt="Bronze" />
+    </div>
+    <h3>수니콘때 후원받은 순위로 결정</h3>
+    <p>플래티넘: 1위, 골드: 2위 ~ 5위, 실버: 6위 ~ 13위, 브론즈: 14위 이하</p>
+    <p>총무는 직책 수행의 공로를 인정받아 골드 티어로 배정됩니다.</p>
+    <p>※ 위 순위는 전체 인원수에 따라 변동될 수 있습니다.</p>
+    <h3>직책 및 역할</h3>
+<p>
+부회장 : 플래티넘 티어가 맡게 되며, 회장이 부재중일때 회사를 이끌어가야 되고, 각종 혜택을 받는다.(수니콘 대기방, MT 2부 방송 등)<br>
+사장 : 부회장을 제외한 멤버 중, 각 소속 회사 내에서 기여도가 가장 높은 멤버가 사장이 됩니다.
+</p>
+    <h3>주요 규칙</h3>
+    <div class="rule-container">
+      <div class="rule-title">서열 문화 :</div>
+      <div class="rule-description">
+        하위 티어는 상위 티어에게 존칭을 사용해야 합니다. 골드 티어는 동급이며, 실버부터는 순위에 따라 존칭을 사용해야 됩니다.<br>
+단, 사장이 된 멤버가 실버 티어여도 골드 티어는 존칭을 사용해야 합니다.</span>
+      </div>
+    </div>
+    <div class="rule-container">
+      <div class="rule-title">복귀자 :</div>
+      <div class="rule-description">
+        장기 휴직 후 복귀하는 멤버는 기존보다 한 티어 강등된 상태로 활동을 시작합니다.
+      </div>
+    </div>
+  </div>
+
+  <div id="skill" class="tier-tab">
+    <div class="skill-tier-images">
+      <img src="images/music.png" alt="수니뮤직 티어 구조" class="skill-tier-image">
+      <img src="images/ent.png" alt="수니엔터 티어 구조" class="skill-tier-image">
+    </div>
+    <h3>실력에 따른 티어</h3>
+    <p>티어 승급전을 통해 준비한 노래 또는 댄스를 선보이고, 그 실력에 따라 티어가 배정됩니다.</p>
+    <p>노래팀은 엔소울 → 수니힐 → 엔뮤즈,<br>
+          댄스팀은 NSB → NSW → NSG 순으로 티어가 나뉩니다.</p>
+    <p>수니콘 무대는 티어에 따라 다음과 같이 배정됩니다.<br>
+    1, 2티어는 각 2무대, 3티어는 1무대를 진행합니다.</p>
+    <p>신입 인턴의 경우, 개별 면접을 통해 어느 정도 티어가 정해지긴 하지만, 티어 승급전에 실제 팀 배정이 결정됩니다.<br>
+          혹시나 팀이 아직 정해지지 않았다면, 여러 팀의 연습 방송을 찾아가 서포트를 통해 멤버들과 자연스럽게 친해지는 것도 좋은 방법입니다.</p>
+  </div>
+
+  <a href="music.html">
+    <img src="images/prev_button.png" class="img-button prev" alt="이전" />
+  </a>
+  <a href="contents.html">
+    <img src="images/next_button.png" class="img-button next" alt="다음" />
+  </a>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tier-tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      showTab('donation');
+    });
+    sessionStorage.setItem("lastPage", location.pathname);
+  </script>
+</body>
+</html>
