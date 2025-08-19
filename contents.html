@@ -1,199 +1,268 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SOONI CONTENTS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONTENTS</title>
 <style>
-    @font-face {
-      font-family: 'SpriteGraffiti';
-      src: url('fonts/sprite-graffiti-3.woff') format('woff');
-    }
-    @font-face {
-      font-family: 'Jalnan';
-      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/chalkboard.png') no-repeat center center;
-      background-size: cover;
-      background-color: black;
-      color: #E9E9E9;
-      font-family: 'Jalnan', sans-serif;
-      position: relative;
-      overflow-x: hidden; /* 가로 스크롤바 숨김 */
-      overflow-y: hidden; /* (추가) 세로 스크롤바 숨김 */
-    }
-    .title {
-      text-align: center;
-      margin-top: 80px;
-      font-size: 6vw;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      font-family: 'SpriteGraffiti', cursive;
-      color: white; 
-    }
-    .description {
-      text-align: center;
-      font-size: 1.5vw;
-      margin-top: 10px;
-      color: #ccc; 
-      font-family: 'Jalnan', sans-serif;
+    :root {
+        /* --- 버튼 --- */
+        --button-bottom: 5%;
+        --prev-button-left: 5%;
+        --next-button-right: 5%;
+        --button-width: 8%;
     }
 
-    ul {
-      list-style: none; 
-      padding: 0;
+    /* 폰트 추가 */
+    @font-face {
+        font-family: 'Sprite Graffiti Regular';
+        src: url('fonts/Sprite Graffiti.otf') format('opentype');
     }
-    ul li {
-      margin-bottom: 1.5em; 
-      padding: 0;
+    @font-face {
+        font-family: 'Jalnan';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
     }
-    li p {
-      margin: 0; 
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #1a1a1a;
+        font-family: 'Jalnan', sans-serif; /* 기본 폰트 변경 */
     }
+
+    .artboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .artboard {
+        width: 100%;
+        height: auto;
+        max-height: 100vh;
+        max-width: calc(100vh * 16 / 9);
+        aspect-ratio: 16 / 9;
+        background-image: url('images/chalkboard.png'); 
+        background-size: cover; 
+        background-position: center;
+        position: relative;
+        display: flex;
+        flex-direction: column; /* 세로 정렬을 위해 변경 */
+        justify-content: flex-start; /* 위에서부터 정렬 */
+        align-items: center;
+        padding-top: 5vh; /* 위쪽 여백 */
+        box-sizing: border-box;
+    }
+    
+    /* 페이지 내용이 들어갈 컨테이너 스타일 */
+    .content-wrapper {
+        width: 85%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .title {
+        text-align: center;
+        font-size: 12vh;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        font-family: 'Sprite Graffiti Regular', cursive;
+        color: white;
+        margin-bottom: 1.5vh;
+        flex-shrink: 0;
+    }
+
+    .description {
+        text-align: center;
+        font-size: 2.3vh;
+        margin-bottom: 4vh;
+        color: #ccc;
+        font-family: 'Jalnan', sans-serif;
+        flex-shrink: 0;
+    }
+    
+    /* ▼▼▼ 본문 목록만 오른쪽으로 이동시키는 스타일 ▼▼▼ */
+    .content-wrapper {
+        position: relative;
+        left: 22%; /* 이 값을 조절해서 오른쪽으로 더 이동시킬 수 있습니다. */
+    }
+
+    .contents-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto; /* 내용이 많으면 스크롤 */
+        height: 100%;
+        font-size: 1.5vh;
+        line-height: 1.5;
+    }
+
+    .contents-list li {
+        margin-bottom: 2vh;
+    }
+
     .list-item-layout {
-      display: flex;
+        display: flex;
     }
+    
     .list-item-title {
-      flex-shrink: 0;
-      font-weight: bold;
+        flex-shrink: 0;
+        font-weight: bold;
+        color: #f5f5f5;
     }
+
     .list-item-description {
-      padding-left: 0.5em; 
+        padding-left: 0.5em;
+        color: #E9E9E9;
     }
 
     .description-newline {
-      display: inline-block;
-      margin-top: 0.5em; 
+        display: block; /* 줄바꿈을 위해 block으로 변경 */
+        margin-top: 0.2em;
     }
- .img-button {
-      width: 220px;
-      position: absolute;
-      bottom: 30px;
-      z-index: 10;
-      cursor: pointer;
+
+
+    /* 이전/다음 버튼 공통 스타일 */
+    .nav-button {
+        position: absolute;
+        width: var(--button-width);
+        bottom: var(--button-bottom);
+        min-width: 80px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        z-index: 10;
     }
-    .img-button.next { right: 4%; }
-    .img-button.prev { left: 4%; }
-    @media (max-width: 2559px) {
-      .img-button { width: 190px; }
-    }
-    @media (max-width: 1599px) {
-      .img-button { width: 110px; }
-    }
+    .nav-button:hover { transform: scale(1.05); }
+    .prev-button { left: var(--prev-button-left); }
+    .next-button { right: var(--next-button-right); }
 
 </style>
 </head>
 <body>
-<div class="title">CONTENTS</div>
-<div class="description">수니그룹 멤버들의 방송, 무대, 프로젝트 등 다양한 컨텐츠를 모았습니다.</div>
-<div style="max-width: 1200px; margin: 60px auto; font-family: 'Jalnan', sans-serif; font-size: clamp(14px, 1.2vw, 20px); line-height: 1; padding: 0 20px;">
-<ul>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">수니게임즈 데이 :</div>
-<div class="list-item-description">게임즈 멤버들과 함께 온라인 또는 오프라인으로 모여 진행하는 참여형 컨텐츠입니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">티어 승급전 :</div>
-<div class="list-item-description">티어 상승을 위해 노래/댄스를 준비하여 보여주고 평가를 받고 유지 또는 상승하는 컨텐츠입니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">선곡확정 :</div>
-<div class="list-item-description">수니콘 주제에 맞춰 팀별로 곡을 선정하고, 남순과 상의 후 최종 확정하거나 교체합니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">긴급점검 :</div>
-<div class="list-item-description">최종점검과 달리 걱정되는 일부 무대만 선별해 수정 및 피드백을 받는 점검입니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">최종점검 :</div>
-<div class="list-item-description">수니콘 무대를 사전에 점검하는 리허설로, 외부 스트리머나 가수들이 심사를 맡기도 합니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">개별면접 :</div>
-<div class="list-item-description">
-            멤버가 직접 인재를 추천하거나 이메일 접수로 비정기적으로 면접을 진행합니다.<br/>
-<span class="description-newline">인원이 많으면 통합 오디션 형식으로 진행됩니다.</span>
-</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">시그점검 :</div>
-<div class="list-item-description">수니콘때 다양한 시그보여주기 위해 멤버들이 준비하고 베스트/보류하/워스트로 평가함 <br/>
-<span class="description-newline"> 베스트시 코인을 제공하고 있습니다.</span></div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">수니콘 대기방 :</div>
-<div class="list-item-description">
-            부회장(기여도 1위)의 방송되며, 수니콘 전 멤버들을 위한 음식과 재미 요소를 제공합니다.<br/>
-<span class="description-newline">현재는 티어나 게임 결과로 반찬 가지 수가 결정되기도 합니다.</span>
-</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">드레스코드 :</div>
-<div class="list-item-description">주제에 맞는 복장을 착용해 인터뷰하며, 베스트드레서는 기여도 상승, 워스트는 기여도 감소 효과가 있습니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">수니콘 :</div>
-<div class="list-item-description">수니그룹의 대표 컨텐츠로, 3주 동안 준비한 무대를 선보이고 후원 시간을 갖습니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">버스킹 :</div>
-<div class="list-item-description">정해진 무대 중심의 드림콘과 달리, 즉흥적으로 팬과 소통하며 전국에서 추가 공연을 펼치는 형식입니다.<br/>
-<span class="description-newline">서울, 부산, 대전, 대구 등에서 진행되었습니다.</span></div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">드림콘 :</div>
-<div class="list-item-description">분기별로 인기가 높았던 무대를 중심으로 오프라인 팬들과 함께하는 공연입니다.</div>
-</div>
-</li>
-<li>
-<div class="list-item-layout">
-<div class="list-item-title">수니어워즈 :</div>
-<div class="list-item-description">수니콘 무대 중 가장 뛰어난 무대가 대상 후보로 선정되어 노력에 따라 수상이 이루어지는 시상식입니다.</div>
-</div>
-</li>
-</ul>
-</div>
-  <a href="tier.html">
-    <img src="images/prev_button.png" class="img-button prev" alt="이전" />
-  </a>
-<a href="index.html">
-  <img src="images/next_button.png" class="img-button next" alt="다음" />
-</a>
+    <div class="artboard-container">
+        <div class="artboard">
 
+            <div class="title">CONTENTS</div>
+            <div class="description">수니그룹에서 진행되고 주요 컨텐츠를 모았습니다.</div>
+            
+            <div class="content-wrapper">
+                <ul class="contents-list">
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">수니게임즈 데이 :</div>
+                            <div class="list-item-description">게임즈 멤버들과 함께 온라인 또는 오프라인으로 모여 진행하는 참여형 컨텐츠입니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">티어 승급전 :</div>
+                            <div class="list-item-description">티어 상승을 위해 노래/댄스를 준비하여 보여주고 평가를 받고 유지 또는 상승하는 컨텐츠입니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">선곡확정 :</div>
+                            <div class="list-item-description">수니콘 주제에 맞춰 팀별로 곡을 선정하고, 남순과 상의 후 최종 확정하거나 교체합니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">긴급점검 :</div>
+                            <div class="list-item-description">최종점검과 달리 걱정되는 일부 무대만 선별해 수정 및 피드백을 받는 점검입니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">최종점검 :</div>
+                            <div class="list-item-description">수니콘 무대를 사전에 점검하는 리허설로, 외부 스트리머나 가수들이 심사를 맡기도 합니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">개별면접 :</div>
+                            <div class="list-item-description">
+                                멤버가 직접 인재를 추천하거나 이메일 접수로 비정기적으로 면접을 진행합니다.
+                                <span class="description-newline">인원이 많으면 통합 오디션 형식으로 진행됩니다.</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">시그점검 :</div>
+                            <div class="list-item-description">
+                                수니콘때 다양한 시그보여주기 위해 멤버들이 준비하고 베스트/보류하/워스트로 평가함
+                                <span class="description-newline">베스트시 코인을 제공하고 있습니다.</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">수니콘 대기방 :</div>
+                            <div class="list-item-description">
+                                부회장(기여도 1위)의 방송이며, 수니콘 전 멤버들을 위한 음식과 재미 요소를 제공합니다.
+                                <span class="description-newline">현재는 티어나 게임 결과로 반찬 가지 수가 결정되기도 합니다.</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">드레스코드 :</div>
+                            <div class="list-item-description">주제에 맞는 복장을 착용해 인터뷰하며, 베스트드레서는 기여도 상승, 워스트는 기여도 감소 효과가 있습니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">수니콘 :</div>
+                            <div class="list-item-description">수니그룹의 대표 컨텐츠로, 3주 동안 준비한 무대를 선보이고 후원 시간을 갖습니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">버스킹 :</div>
+                            <div class="list-item-description">
+                                정해진 무대 중심의 드림콘과 달리, 즉흥적으로 팬과 소통하며 전국에서 추가 공연을 펼치는 형식입니다.
+                                <span class="description-newline">서울, 부산, 대전, 대구 등에서 진행되었습니다.</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">드림콘 :</div>
+                            <div class="list-item-description">분기별로 인기가 높았던 무대를 중심으로 오프라인 팬들과 함께하는 공연입니다.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-item-layout">
+                            <div class="list-item-title">수니어워즈 :</div>
+                            <div class="list-item-description">수니콘 무대 중 가장 뛰어난 무대가 대상 후보로 선정되어 노력에 따라 수상이 이루어지는 시상식입니다.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="tier.html" class="nav-button prev-button">
+                <img src="images/prev_button.png" alt="이전 페이지" style="width:100%">
+            </a>
+            
+            <a href="rule.html" class="nav-button next-button">
+                <img src="images/next_button.png" alt="다음 페이지" style="width:100%">
+            </a>
+
+        </div>
+    </div>
 <script>
-
-    sessionStorage.setItem("lastPage", location.pathname);
-  </script>
-
+    // 이 페이지를 다른 이름으로 저장할 경우, 아래 "contents.html" 부분을 새 파일 이름으로 변경해주세요.
+    var pathArray = window.location.pathname.split('/');
+    var currentPage = pathArray[pathArray.length - 1];
+    sessionStorage.setItem("lastPage", currentPage || "contents.html");
+</script>
 </body>
 </html>

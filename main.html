@@ -1,171 +1,168 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOONI GROUP (Main Content)</title>
-  <style>
-    /* 폰트 정의 */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Sooni</title>
+<style>
+    /* 직접 조절하는 부분 */
+    :root {
+        /* --- 버튼 --- */
+        
+        --button-bottom: 5%;
+        --prev-button-left: 5%;
+        --next-button-right: 5%;
+        --button-width: 8%;
+
+
+        /* --- 장식 이미지 --- */
+        --deco-arrow-width:8%;
+        --deco-arrow-top:20%;
+        --deco-arrow-left:23%;
+        --deco-arrow-rotate:5deg;
+
+        --deco-curve-width:7%;
+        --deco-curve-top:15%;
+        --deco-curve-right:5%;
+        --deco-curve-rotate:0deg;
+
+        --deco-star-width:5%;
+        --deco-star-bottom:84%;
+        --deco-star-left:80%;
+        --deco-star-rotate:10deg;
+    }
+    
     @font-face {
-      font-family: 'SpriteGraffiti';
-      src: url('fonts/sprite-graffiti-3.woff') format('woff'),
-           url('fonts/sprite-graffiti-3.ttf') format('truetype');
+        font-family: 'Sprite Graffiti Regular';
+        src: url('fonts/Sprite Graffiti.otf') format('opentype');
     }
-    /* 'KkotNaeum' 폰트는 사용되지 않아 삭제했습니다. */
 
-    /* 기본 스타일 */
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/chalkboard.png') no-repeat center center;
-      background-size: contain;
-      background-color: black;
-      color: white;
-      font-family: sans-serif; /* 기본 폰트 */
-      overflow: hidden; /* 스크롤바 숨김 */
+        margin:0;
+        padding:0;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        background-color:#1a1a1a;
     }
 
-    /* 메인 텍스트 스타일 */
-    .main-text {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-family: 'SpriteGraffiti', sans-serif;
-      font-size: 10vw;
-      text-align: center;
-      z-index: 2;
-      text-shadow: 2px 2px 0px #00000033;
+    .artboard-container {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:100%;
     }
 
-    /* 서브 텍스트 컨테이너 스타일 */
-    .sub-wrapper {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 2;
+    .artboard {
+        width:100%;
+        height:auto;
+        max-height:100vh;
+        max-width:calc(100vh * 16 / 9);
+        aspect-ratio:16 / 9;
+        background-image:url('images/chalkboard.png');
+        background-size:cover;
+        background-position:center;
+        position:relative;
+        display:flex;
+        flex-direction:column;
     }
 
-    /* 서브 텍스트 스타일 */
-    .sub-text {
-      color: white;
-      font-family: 'SpriteGraffiti', sans-serif;
-      font-size: 7vw;
-      margin-bottom: 0.8vw;
-      text-shadow: 1px 1px 0px #00000055;
+    .deco-item {
+        position:absolute;
+        z-index:1;
+        width:var(--width);
+        top:var(--top,auto);
+        left:var(--left,auto);
+        right:var(--right,auto);
+        bottom:var(--bottom,auto);
+        transform:rotate(var(--rotate,0deg));
     }
 
-    /* 칠판 밑줄 이미지 스타일 */
-    .chalk-bg {
-      position: absolute;
-      top: 72%;
-      left: 50%;
-      transform: translate(-50%, -20%);
-      width: 40vw;
-      height: auto;
-    }
-
-    /* --- (수정) 이미지 버튼 스타일 정리 --- */
-    .img-button {
-      height: auto;
-      position: absolute;
-      bottom: 30px;
-      z-index: 10;
-      cursor: pointer;
-      width: 220px; /* 기본 너비 (2560px 초과 화면용) */
-    }
-    .img-button.next {
-      right: 4%;
-    }
-    .img-button.prev { /* 현재 페이지에는 없지만, 다른 페이지와 통일성을 위해 유지 */
-      left: 4%;
-    }
-
-    /* 화면 크기에 따른 버튼 너비 조절 */
-    @media (max-width: 2559px) { /* 1600px ~ 2559px */
-      .img-button {
-        width: 190px;
-      }
-    }
-    @media (max-width: 1599px) { /* 1599px 이하 */
-      .img-button {
-        width: 110px;
-      }
-    }
-    /* --- 여기까지 이미지 버튼 스타일 정리 --- */
-
-    /* 장식 이미지 공통 스타일 */
-    .deco {
-      position: absolute;
-      z-index: 1;
-      opacity: 0.9;
-    }
     .deco-arrow {
-      top: 15%;
-      left: 15%;
-      width: 7%;
+        --width:var(--deco-arrow-width);
+        --top:var(--deco-arrow-top);
+        --left:var(--deco-arrow-left);
+        --rotate:var(--deco-arrow-rotate);
     }
+
     .deco-curve {
-      top: 10%;
-      right: 15%;
-      width: 7%;
+        --width:var(--deco-curve-width);
+        --top:var(--deco-curve-top);
+        --right:var(--deco-curve-right);
+        --rotate:var(--deco-curve-rotate);
     }
+
     .deco-star {
-      top: 3%;
-      right: 26%;
-      width: 3%;
+        --width:var(--deco-star-width);
+        --bottom:var(--deco-star-bottom);
+        --left:var(--deco-star-left);
+        --rotate:var(--deco-star-rotate);
     }
-  </style>
-<style> 블록은 첫 번째 스타일을 덮어쓰는 내용으로, 유지합니다. */}
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background-size: cover !important;
+
+    .content-area {
+        flex-grow:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:relative;
+        z-index:2;
     }
-    .main-text {
-      font-size: 10vw !important;
+
+    .welcome-text {
+        font-family:'Sprite Graffiti Regular';
+        color:#fff;
+        text-shadow:2px 2px 4px rgba(0,0,0,.5);
+        font-size:18vh;
+        text-align:center;
+        font-weight:normal;
     }
-    .sub-text {
-      font-size: 7vw !important;
+
+    .nav-button {
+        position:absolute;
+        width:var(--button-width);
+        bottom:var(--button-bottom);
+        min-width:80px;
+        height:auto;
+        cursor:pointer;
+        transition:transform .2s ease-in-out;
+        z-index:2;
     }
-    .chalk-bg {
-      width: 35vw !important;
+
+    .nav-button:hover {
+        transform:scale(1.05);
     }
-  </style>
-  
-  <script>
-    window.addEventListener("resize", () => {
-      location.reload();
-    });
-  </script>
+
+    .prev-button {
+        left:var(--prev-button-left);
+    }
+
+    .next-button {
+        right:var(--next-button-right);
+    }
+</style>
 </head>
 <body>
-  <div class="main-text">WELCOME</div>
-  <div class="sub-wrapper">
-    <div class="sub-text">SOONI GROUP</div>
-    <img src="images/chalk_underline.png" alt="underline" class="chalk-bg" />
-  </div>
-
-  <img src="images/deco_arrow.png" alt="decoration" class="deco deco-arrow" />
-  <img src="images/deco_curve.png" alt="decoration" class="deco deco-curve" />
-  <img src="images/deco_star.png" alt="decoration" class="deco deco-star" />
-
-  <a href="list.html">
-    <img src="images/next_button.png" alt="NEXT" class="img-button next" />
-  </a>
-  
-
-  <script>
-    sessionStorage.setItem("lastPage", location.pathname);
-  </script>
+    <div class="artboard-container">
+        <div class="artboard">
+            <img src="images/deco_arrow.png" alt="Decoration" class="deco-item deco-arrow">
+            <img src="images/deco_curve.png" alt="Decoration" class="deco-item deco-curve">
+            <img src="images/deco_star.png" alt="Decoration" class="deco-item deco-star">
+            <div class="content-area">
+                <h1 class="welcome-text">WELCOME<br>SOONI GROUP</h1>
+            </div>
+            <a href="index.html" target="_top" class="nav-button prev-button">
+                <img src="images/prev_button.png" alt="이전 페이지" style="width:100%">
+            </a>
+            <a href="namsoon.html" class="nav-button next-button">
+                <img src="images/next_button.png" alt="다음 페이지" style="width:100%">
+            </a>
+        </div>
+    </div>
+<script>
+    var pathArray = window.location.pathname.split('/');
+    var currentPage = pathArray[pathArray.length - 1];
+    sessionStorage.setItem("lastPage", currentPage || "main.html"); // 혹시 currentPage가 비어있을 경우 대비
+</script>
 </body>
 </html>

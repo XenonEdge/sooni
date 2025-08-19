@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>앨범</title>
+<style>
+    :root {
+        
+        --button-bottom: 5%;
+        --prev-button-left: 5%;
+        --next-button-right: 5%;
+        --button-width: 8%;
+
+        --title-font-size: 14vh;
+        --title-top: 7%;
+        --album-gap: 0.8vh;
+        --album-image-padding-top: 10px;
+        --album-image-padding-right: 10px;
+        --album-image-padding-bottom: 10px;
+        --album-image-padding-left: 10px;
+    }
+
+    @font-face {
+        font-family: 'Sprite Graffiti Regular';
+        src: url('fonts/Sprite Graffiti.otf') format('opentype');
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #1a1a1a;
+        font-family: sans-serif;
+    }
+
+    .artboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .artboard {
+        width: 100%;
+        height: auto;
+        max-height: 100vh;
+        max-width: calc(100vh * 16 / 9);
+        aspect-ratio: 16 / 9;
+        background-image: url('images/chalkboard.png'); 
+        background-size: cover; 
+        background-position: center;
+        position: relative;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        padding: 1vh 0;
+        box-sizing: border-box;
+    }
+
+    .page-title {
+        position: absolute;
+        top: var(--title-top);
+        font-family: 'Sprite Graffiti Regular';
+        font-size: var(--title-font-size);
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        padding: 0;
+        z-index: 5;
+    }
+
+    .content-area {
+        width: 40%;
+        height: 65vh;
+        padding: 1vh;
+        margin-top: 18vh; 
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .album-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 0.8vh;
+        row-gap: 4vh;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    .album-item {
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        padding: var(--album-image-padding-top) var(--album-image-padding-right) var(--album-image-padding-bottom) var(--album-image-padding-left);
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .album-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    }
+
+    .album-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .nav-button {
+        position: absolute;
+        width: var(--button-width);
+        bottom: var(--button-bottom);
+        min-width: 80px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        z-index: 10;
+    }
+
+    .nav-button:hover { transform: scale(1.05); }
+    .prev-button { left: var(--prev-button-left); }
+    .next-button { right: var(--next-button-right); }
+</style>
+</head>
+<body>
+<div class="artboard-container">
+    <div class="artboard">
+        <div class="page-title">ALBUM</div>
+        <div class="content-area">
+            <div class="album-grid">
+                <div class="album-item" onclick="openPopup('너를 만나 빛나는 순간')">
+                    <img src="images/music1.png" alt="너를 만나 빛나는 순간">
+                </div>
+                <div class="album-item" onclick="openPopup('NS-Mas')">
+                    <img src="images/music2.png" alt="NS-Mas">
+                </div>
+                <div class="album-item" onclick="openPopup('Merry Christmas Soon')">
+                    <img src="images/music3.png" alt="Merry Christmas Soon">
+                </div>
+                <div class="album-item" onclick="openPopup('눈부신 날이었는데')">
+                    <img src="images/music4.png" alt="눈부신 날이었는데">
+                </div>
+                <div class="album-item" onclick="openPopup('ZIG ZAG')">
+                    <img src="images/music5.png" alt="ZIG ZAG">
+                </div>
+                <div class="album-item" onclick="openPopup('나를 사랑했던 사람아')">
+                    <img src="images/music6.png" alt="나를 사랑했던 사람아">
+                </div>
+            </div>
+        </div>
+        <a href="sooni.html" class="nav-button prev-button">
+            <img src="images/prev_button.png" alt="이전 페이지" style="width:100%">
+        </a>
+        <a href="tier.html" class="nav-button next-button">
+            <img src="images/next_button.png" alt="다음 페이지" style="width:100%">
+        </a>
+    </div>
+</div>
+<div id="popupOverlay" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+  <div id="popupBox" style="background:rgba(0, 0, 0, 0.75); padding:2vh; border-radius:12px; max-width:90vw; max-height:90vh; position:relative; box-shadow:0 0 30px rgba(0,0,0,0.5);">
+    <div id="popupTitle" style="
+  font-size: 2.4vh;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1.5vh;
+  text-align: center;
+  width: 100%;
+">
+</div>
+    <div style="margin-bottom:1.5vh; display: flex; gap: 1vw; justify-content: center;">
+      <button onclick="loadVideo('audio')" style="padding:1vh 2vw; font-size:1.8vh; cursor:pointer;">음원</button>
+      <button onclick="loadVideo('stage')" style="padding:1vh 2vw; font-size:1.8vh; cursor:pointer;">무대</button>
+    </div>
+    <div id="popupContent" style="max-height:75vh; overflow:auto;"></div>
+  </div>
+</div>
+<script>
+const popupOverlay = document.getElementById('popupOverlay');
+const popupTitle = document.getElementById('popupTitle');
+const popupContent = document.getElementById('popupContent');
+
+const albumData = {
+  "너를 만나 빛나는 순간": {
+    audio: 'https://www.youtube.com/embed/_qb0nYKGyUw?autoplay=1',
+    stage: `<iframe id="soop_player_video" width="1280" height="720" src="https://vod.sooplive.co.kr/player/127860423/embed?showChat=false&autoPlay=true&mutePlay=true" frameborder="0" allowfullscreen="true" allow="clipboard-write; web-share;"></iframe>`
+  },
+  "NS-Mas": {
+    audio: 'https://www.youtube.com/embed/X_ECE_UtuQQ?autoplay=1',
+    stage: 'https://www.youtube.com/embed/e3hS0YErZ34?autoplay=1'
+  },
+  "Merry Christmas Soon": {
+    audio: 'https://www.youtube.com/embed/e0fum2zEGiw?autoplay=1',
+    stage: ''
+  },
+  "눈부신 날이었는데": {
+    audio: 'https://www.youtube.com/embed/ztnDTKOXjPM?autoplay=1',
+    stage: `<iframe id="soop_player_video" width="1280" height="720" src="https://vod.sooplive.co.kr/player/158353447/embed?showChat=false&autoPlay=true&mutePlay=true" frameborder="0" allowfullscreen="true" allow="clipboard-write; web-share;"></iframe>`
+  },
+  "ZIG ZAG": {
+    audio: 'https://www.youtube.com/embed/5z8qURpyaBk?autoplay=1',
+    stage: `<iframe width="1280" height="720" src="https://vod.sooplive.co.kr/player/148968205/embed?showChat=true&autoPlay=true&mutePlay=true" frameborder="0" allowfullscreen></iframe>`
+  },
+  "나를 사랑했던 사람아": {
+    audio: 'https://www.youtube.com/embed/Mqd8y8FJ03g?autoplay=1',
+    stage: 'https://www.youtube.com/embed/XMTTOHXXd3s?autoplay=1'
+  }
+};
+
+let currentAlbum = '';
+
+function openPopup(albumTitle) {
+  currentAlbum = albumTitle;
+  popupTitle.textContent = albumTitle;
+  popupContent.innerHTML = '';
+  popupOverlay.style.display = 'flex';
+}
+
+function loadVideo(type) {
+  const data = albumData[currentAlbum];
+  if (!data) return;
+
+  if (type === 'stage' && data.stage.includes('<iframe')) {
+    popupContent.innerHTML = data.stage;
+  } else if (type === 'audio' || data.stage) {
+    const url = type === 'audio' ? data.audio : data.stage;
+    popupContent.innerHTML = `<iframe width="1280" height="720" src="${url}" frameborder="0" allowfullscreen></iframe>`;
+  }
+}
+
+popupOverlay.addEventListener('click', (e) => {
+  if (e.target === popupOverlay) {
+    popupOverlay.style.display = 'none';
+    popupContent.innerHTML = '';
+  }
+});
+    var pathArray = window.location.pathname.split('/');
+    var currentPage = pathArray.pop() || 'sooni_group_page.html'; 
+    sessionStorage.setItem("lastPage", currentPage);
+</script>
+</body>
+</html>
